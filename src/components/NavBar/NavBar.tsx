@@ -43,7 +43,7 @@ const NavBar = () => {
               <>
                 <li className="ml-6 md:text-lg text-md">
                   <button className="bg-white text-green-700 hover:bg-gray-200 hover:text-green-900 rounded p-2 font-bold">
-                    Logout
+                    <Link href="/auth/logout">Logout</Link>
                   </button>
                 </li>
               </>
