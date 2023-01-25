@@ -1,20 +1,26 @@
-import React from 'react'
-import supabase from "app/supabase";
-import { useRouter } from 'next/router';
+import React from "react";
+import { useRouter } from "next/router";
+import Layout from "@/components/Layout";
+import logUserOut from "@/hooks/useLogOutUser";
 
 const logout = () => {
-  const router = useRouter();
-  const logUserOut = async () => {
-    const logoutResult = await supabase.auth.signOut()
-    if(logoutResult.error === null) {
-      router.push("/");
+  const router = useRouter()
+  const onUserLogOut = async () => {
+    if((await logUserOut()).error === null) {
+      router.push("/")
     }
-    return;
   }
-
   return (
-    <button onClick={logUserOut}>logout</button>
-  )
-}
+    <>
+      <Layout
+        pageContent={
+          <div className="bg-green-300 w-full h-screen border-4 border-black mt-20">
+            <button onClick={() => onUserLogOut()}>logout</button>
+          </div>
+        }
+      ></Layout>
+    </>
+  );
+};
 
-export default logout
+export default logout;
