@@ -2,14 +2,23 @@ import Link from "next/link";
 import useGetCurrentUser from "@/hooks/useAuthenticatedUser";
 import DataState from "../DataState";
 import React from "react";
+import logUserOut from "@/hooks/useLogOutUser";
+import { useRouter } from "next/router";
 
 const NavBar = () => {
   
-  const user = useGetCurrentUser();
+  const userResponse = useGetCurrentUser();
+  const userData = userResponse.data?.user;
+  const router = useRouter()
+  const onUserLogOut = async () => {
+    if((await logUserOut()).error === null) {
+      router.push("/")
+    }
+  }
 
   return (
-    <div className="w-full fixed top-0 left-0">
-      <div className="flex items-center justify-between bg-white py-4 px-10">
+    <div className="w-full fixed top-0 left-0 h-18 bg-white">
+      <div className="flex items-center justify-between py-4 px-10">
         <div className="text-green-700 font-bold text-lg flex-items-center">
           <Link href="/">
             <span className="pr-2">
@@ -21,9 +30,9 @@ const NavBar = () => {
 
         <ul className="text-white flex items-center">
           <DataState
-            isFetching={user.isFetching || user.isLoading}
-            isError={user.data?.user === null || user.isError || user.isLoadingError}
-            isValidData={user.data?.user !== null && !user.isLoading}
+            isFetching={userResponse.isFetching || userResponse.isLoading}
+            isError={userData === null || userResponse.isError || userResponse.isLoadingError}
+            isValidData={userData !== null && !userResponse.isLoading}
             fetching={<></>}
             error={
               <>
@@ -42,8 +51,8 @@ const NavBar = () => {
             valid={
               <>
                 <li className="ml-6 md:text-lg text-md">
-                  <button className="bg-white text-green-700 hover:bg-gray-200 hover:text-green-900 rounded p-2 font-bold">
-                    <Link href="/auth/logout">Logout</Link>
+                  <button onClick={() => onUserLogOut()} className="bg-white text-green-700 hover:bg-gray-200 hover:text-green-900 rounded p-2 font-bold">
+                    Logout
                   </button>
                 </li>
               </>
