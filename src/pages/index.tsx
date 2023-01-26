@@ -19,7 +19,7 @@ export default function Home() {
       </Head>
       <Layout
         pageContent={
-          <div>index page</div>
+          <div className="text-black">index page</div>
         }
       ></Layout>
     </>
