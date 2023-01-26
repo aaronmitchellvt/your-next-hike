@@ -3,17 +3,18 @@ import useGoogleSignIn from "@/hooks/useSignInGoogleUser";
 import Link from "next/link";
 
 export default function Login() {
+
   return (
     <>
       <Layout
         pageContent={
-          <div className="grid place-items-center mt-16">
-            <div className="bg-white w-3/5 w:md-1/3  h-auto rounded p-6">
+          <div className="grid place-items-center mt-16 pt-8">
+            <div className="bg-white w-full sm:w-2/3 md:1/3 h-auto rounded mt-8 p-6">
               <h1 className="text-black text-xl text-center font-bold pt-3">
-                Log in and start Exploring
+                Log in and start exploring
               </h1>
               <button
-                className="p-2 mt-3 w-full bg-blue-500 text-white rounded"
+                className="p-2 mt-3 w-full bg-orange-500 hover:bg-orange-600 text-white rounded"
                 onClick={() => useGoogleSignIn()}
               >
                 <span className="flex justify-between items-center pr-3">
@@ -25,7 +26,7 @@ export default function Login() {
                 <span className="flex items-center">
                   <p>Don't have an account?</p>
                   <Link href="/auth/signup">
-                    <p className="pl-2 text-green-700 font-bold underline">
+                    <p className="pl-2 text-green-700 hover:text-green-800 font-bold underline">
                       Create account
                     </p>
                   </Link>

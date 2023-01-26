@@ -6,26 +6,27 @@ import logUserOut from "@/hooks/useLogOutUser";
 import { useRouter } from "next/router";
 
 const NavBar = () => {
-  
+  const router = useRouter()
+
   const userResponse = useGetCurrentUser();
   const userData = userResponse.data?.user;
-  const router = useRouter()
+  console.log("userData: ", userData);
   const onUserLogOut = async () => {
     if((await logUserOut()).error === null) {
       router.push("/")
     }
+    router.reload();
   }
 
   return (
-    <div className="w-full fixed top-0 left-0 h-18 bg-white">
+    <div className="w-full fixed top-0 left-0 h-18 bg-white shadow">
       <div className="flex items-center justify-between py-4 px-10">
-        <div className="text-green-700 font-bold text-lg flex-items-center">
-          <Link href="/">
+        <div className="text-green-700 font-bold text-lg flex flex-items-center">
+          
             <span className="pr-2">
               <ion-icon name="leaf-outline"></ion-icon>
             </span>
-            Your NEXT Hike
-          </Link>
+            <Link href="/">Your NEXT Hike</Link>
         </div>
 
         <ul className="text-white flex items-center">
