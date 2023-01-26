@@ -10,7 +10,7 @@ const NavBar = () => {
 
   const userResponse = useGetCurrentUser();
   const userData = userResponse.data?.user;
-  console.log("userData: ", userData);
+  // console.log("userData: ", userData);
   const onUserLogOut = async () => {
     if((await logUserOut()).error === null) {
       router.push("/")
