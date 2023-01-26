@@ -11,7 +11,7 @@ export default function Login() {
           <div className="grid place-items-center mt-16 pt-8">
             <div className="bg-white w-full sm:w-2/3 md:1/3 h-auto rounded mt-8 p-6">
               <h1 className="text-black text-xl text-center font-bold pt-3">
-                Log in and start Exploring
+                Log in and start exploring
               </h1>
               <button
                 className="p-2 mt-3 w-full bg-orange-500 hover:bg-orange-600 text-white rounded"
